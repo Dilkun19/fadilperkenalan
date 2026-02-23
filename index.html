@@ -38,7 +38,7 @@
             100% { transform: translate(-50px, 150px) scale(1); }
         }
 
-        /* --- EFEK KLIK --- */
+        /* --- EFEK SPARK --- */
         .click-spark {
             position: fixed; width: 10px; height: 10px;
             background: var(--gold); border-radius: 50%;
@@ -51,12 +51,13 @@
             100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
         }
 
-        /* --- MUSIK --- */
+        /* --- MUSIK PLAYER --- */
         .music-player {
             position: fixed; bottom: 20px; right: 20px; z-index: 10000;
             background: rgba(30, 30, 30, 0.9); padding: 10px;
             border-radius: 50px; border: 1px solid var(--gold);
             display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
         .music-btn {
             background: var(--gold); border: none; width: 35px; height: 35px;
@@ -69,7 +70,8 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
-        #welcome-screen h1 { font-size: 1.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; text-align: center; padding: 0 20px; }
+        /* NAMA SUDAH DIPERBAIKI DI SINI */
+        #welcome-screen h1 { font-size: 1.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; text-align: center; padding: 0 20px; line-height: 1.4; }
         
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
@@ -77,12 +79,11 @@
             text-transform: uppercase; font-weight: bold; margin-top: 30px; position: relative; z-index: 10005;
         }
 
-        /* --- CONTENT --- */
+        /* --- MAIN CONTENT --- */
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 40px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 20px; }
         
-        /* FIX: Reveal lebih sensitif untuk HP */
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -108,8 +109,8 @@
 </head>
 <body onclick="createSpark(event)">
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <div class="background-blobs">
@@ -118,11 +119,12 @@
     </div>
 
     <div class="music-player" id="musicPanel" style="display: none;">
+        <span style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">LIVE MUSIC</span>
         <button class="music-btn" onclick="toggleMusic()"><span id="musicIcon">⏸</span></button>
     </div>
 
     <div id="welcome-screen">
-        <h1>Fadil Ferdiansyah</h1>
+        <h1>Fadil Ferdiansyah Saputra</h1>
         <button class="btn-enter" onclick="masukWeb()">MASUK</button>
     </div>
 
@@ -135,27 +137,27 @@
         <div class="container">
             <section class="reveal">
                 <h2>Tentang Saya</h2>
-                <p style="font-size: 0.95rem;">Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Ahli <strong>Ibis Paint X</strong> & <strong>FlipaClip</strong>.</p>
+                <p>Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Ahli <strong>Ibis Paint X</strong> & <strong>FlipaClip</strong>.</p>
             </section>
 
             <section class="reveal">
                 <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold; font-size: 1rem;">SMKS Teratai Putih Jakarta</p>
-                <p style="color: var(--gold); margin: 5px 0; font-size: 0.9rem;">Teknik Komputer Jaringan (2026)</p>
+                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
+                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (2026)</p>
             </section>
 
             <section class="reveal">
                 <h2>Keahlian</h2>
                 <div class="skill-container">
-                    <span style="font-size: 0.85rem;">Storyboard & Visual Storytelling</span>
+                    <span>Storyboard & Visual Storytelling</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span style="font-size: 0.85rem;">Animation</span>
+                    <span>Animation</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span style="font-size: 0.85rem;">Camera Angle</span>
+                    <span>Camera Angle</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
@@ -163,17 +165,17 @@
             <section class="reveal">
                 <h2>Pengalaman</h2>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">PKL Duta Teknologi</p>
+                    <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi</p>
                     <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
                     <div id="pkl" class="detail-box">Mendesain website perusahaan menggunakan WordPress (2025).</div>
                 </div>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Bacon vs Pyro</p>
+                    <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Detail</button>
                     <div id="collab" class="detail-box">Lead Storyboard: Fokus pada action terstruktur & timing.</div>
                 </div>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Hantu</p>
+                    <p style="margin: 0; font-weight: bold;">Animasi Hantu</p>
                     <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail</button>
                     <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition menggunakan FlipaClip.</div>
                 </div>
@@ -181,8 +183,8 @@
 
             <section class="reveal">
                 <h2>Kontak</h2>
-                <p style="font-size: 0.95rem;">IG: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
-                <p style="font-size: 0.95rem;">Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
+                <p>IG: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
+                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
             </section>
         </div>
 
@@ -198,15 +200,20 @@
         function createSpark(e) {
             const spark = document.createElement("div");
             spark.className = "click-spark";
-            spark.style.left = (e.clientX || e.touches[0].clientX) + "px";
-            spark.style.top = (e.clientY || e.touches[0].clientY) + "px";
+            spark.style.left = (e.clientX || (e.touches ? e.touches[0].clientX : 0)) + "px";
+            spark.style.top = (e.clientY || (e.touches ? e.touches[0].clientY : 0)) + "px";
             document.body.appendChild(spark);
             setTimeout(() => spark.remove(), 600);
         }
 
         function toggleMusic() {
-            if (audio.paused) { audio.play(); musicIcon.innerText = "⏸"; }
-            else { audio.pause(); musicIcon.innerText = "▶"; }
+            if (audio.paused) { 
+                audio.play(); 
+                musicIcon.innerText = "⏸"; 
+            } else { 
+                audio.pause(); 
+                musicIcon.innerText = "▶"; 
+            }
         }
 
         function masukWeb() {
@@ -214,7 +221,13 @@
             var main = document.getElementById('main-content');
             var mPanel = document.getElementById('musicPanel');
             
-            audio.play().catch(e => console.log("Audio block"));
+            // Mencoba Play Musik
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Autoplay blocked, needs user interaction.");
+                });
+            }
             
             welcome.style.opacity = '0';
             setTimeout(() => {
@@ -223,7 +236,7 @@
                 mPanel.style.display = 'flex';
                 setTimeout(() => {
                     main.style.opacity = '1';
-                    reveal(); // Jalankan reveal pertama kali
+                    reveal();
                 }, 50);
             }, 800);
         }
@@ -233,10 +246,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                // Sensitivitas diperkecil (dari 100 ke 50) agar mudah muncul di HP
-                var elementVisible = 50; 
-                
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 50) {
                     reveals[i].classList.add("active");
                     var bars = reveals[i].querySelectorAll('.skill-fill');
                     bars.forEach(bar => bar.style.width = bar.getAttribute('data-skill'));
@@ -244,7 +254,6 @@
             }
         }
 
-        // Event listener untuk scroll di HP dan Desktop
         window.addEventListener("scroll", reveal);
         window.addEventListener("touchmove", reveal);
 
@@ -253,7 +262,7 @@
             var btn = detail.previousElementSibling;
             detail.style.display = detail.style.display === "block" ? "none" : "block";
             btn.innerText = detail.style.display === "block" ? "- Tutup" : "+ Detail";
-            reveal(); // Cek reveal lagi setelah konten memanjang
+            reveal();
         }
     </script>
 </body>
