@@ -99,21 +99,21 @@
         .detail-box ul { padding-left: 20px; margin: 5px 0; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.8rem; text-decoration: underline; }
         
-        /* --- VIDEO & IMAGE LINK STYLING --- */
-        .video-wrapper {
+        /* --- MEDIA WRAPPER --- */
+        .media-wrapper {
             margin-top: 15px; width: 100%; border-radius: 10px;
             overflow: hidden; border: 1px solid var(--gold); background: #000;
         }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .media-container { position: relative; padding-bottom: 56.25%; height: 0; }
+        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         
-        .img-link {
-            display: inline-block; margin-top: 10px; color: var(--gold);
+        .action-link {
+            display: inline-block; margin-top: 12px; color: var(--gold);
             text-decoration: none; border: 1px solid var(--gold);
-            padding: 8px 15px; border-radius: 5px; font-size: 0.8rem;
+            padding: 8px 20px; border-radius: 50px; font-size: 0.85rem;
             transition: 0.3s; font-weight: bold;
         }
-        .img-link:hover { background: var(--gold); color: var(--black); }
+        .action-link:hover { background: var(--gold); color: var(--black); box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
 
         .paint-footer {
             position: relative; width: 100%; height: 120px; margin-top: 40px;
@@ -159,12 +159,6 @@
             </section>
 
             <section class="reveal">
-                <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold; font-size: 1rem;">SMKS Teratai Putih Jakarta</p>
-                <p style="color: var(--gold); margin: 5px 0; font-size: 0.9rem;">Teknik Komputer Jaringan (2026)</p>
-            </section>
-
-            <section class="reveal">
                 <h2>Keahlian</h2>
                 <div class="skill-container">
                     <div class="skill-info"><span>Storyboard & Visual Storytelling</span><span>90%</span></div>
@@ -184,15 +178,6 @@
                 <h2>Pengalaman & Proyek</h2>
                 
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">PKL Duta Teknologi – Software</p>
-                    <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Jan 2025 - Jun 2025</p>
-                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
-                    <div id="pkl" class="detail-box">
-                        <ul><li>Mendesain sebuah website perusahaan menggunakan wordpress.</li></ul>
-                    </div>
-                </div>
-
-                <div class="project-item">
                     <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Voltacol vs Pyrowo – Proyek Kolaborasi</p>
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Sept 2025 - Sekarang</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Detail & Video</button>
@@ -200,14 +185,9 @@
                         <ul>
                             <li>Berperan menjadi lead storyboard dalam membuat animasi action yang terstruktur.</li>
                             <li>Mengatur timing agar adegan action terasa dinamis.</li>
-                            <li>Membuat animatic versi video dari storyboard dengan timing kasar.</li>
                         </ul>
-                        <p style="margin: 15px 0 5px 0; font-weight: bold; color: var(--gold);">Cut Satu:</p>
-                        <div class="video-wrapper">
-                            <div class="video-container">
-                                <iframe src="https://drive.google.com/file/d/1s_dBkn0zT_FPkI3irwQcP1ZoP4_N-nJE/preview"></iframe>
-                            </div>
-                        </div>
+                        <p style="margin: 15px 0 5px 0; font-weight: bold; color: var(--gold);">Hasil Cut:</p>
+                        <div class="media-wrapper"><div class="media-container"><iframe src="https://drive.google.com/file/d/1s_dBkn0zT_FPkI3irwQcP1ZoP4_N-nJE/preview"></iframe></div></div>
                     </div>
                 </div>
 
@@ -218,22 +198,28 @@
                     <div id="hantu" class="detail-box">
                         <ul>
                             <li>Membuat character acting agar character terasa lebih hidup dan realis.</li>
-                            <li>Mengatur composition untuk membuat visual lebih menarik dan jelas.</li>
                         </ul>
                         <p style="margin: 15px 0 5px 0; font-weight: bold; color: var(--gold);">Cut Satu:</p>
-                        <div class="video-wrapper"><div class="video-container"><iframe src="https://drive.google.com/file/d/1TTTWeQgEhMZCuM_W0M3ObLEa14SW6pR-/preview"></iframe></div></div>
+                        <div class="media-wrapper"><div class="media-container"><iframe src="https://drive.google.com/file/d/1TTTWeQgEhMZCuM_W0M3ObLEa14SW6pR-/preview"></iframe></div></div>
                         <p style="margin: 15px 0 5px 0; font-weight: bold; color: var(--gold);">Cut Dua:</p>
-                        <div class="video-wrapper"><div class="video-container"><iframe src="https://drive.google.com/file/d/1cG-vdqAs8lQzHH3NI8hhEykDjyFrteIL/preview"></iframe></div></div>
+                        <div class="media-wrapper"><div class="media-container"><iframe src="https://drive.google.com/file/d/1cG-vdqAs8lQzHH3NI8hhEykDjyFrteIL/preview"></iframe></div></div>
                     </div>
                 </div>
 
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Eksperimen Visual & Ilustrasi</p>
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Waktu Luang</p>
-                    <button class="btn-more" onclick="toggleDetail('hobi')">+ Detail Gambar</button>
+                    <button class="btn-more" onclick="toggleDetail('hobi')">+ Lihat Gambar</button>
                     <div id="hobi" class="detail-box">
-                        <p>Selain mengerjakan proyek animasi, saya aktif mengasah kemampuan menggambar di waktu luang untuk memperdalam pemahaman tentang anatomi dan shading visual.</p>
-                        <a href="https://www.instagram.com/p/DSNKXfTCXr9/?igsh=cXdzaGF6ejhyOXRh" target="_blank" class="img-link">🖼 Lihat Gambar di Instagram</a>
+                        <p>Aktif mengasah kemampuan menggambar di waktu luang untuk memperdalam pemahaman tentang anatomi dan shading visual.</p>
+                        
+                        <div class="media-wrapper">
+                            <div class="media-container">
+                                <iframe src="https://drive.google.com/file/d/1JXrCODMaidy-vRbtYyVB8-d6rsiyLuGF/preview"></iframe>
+                            </div>
+                        </div>
+
+                        <a href="https://www.instagram.com/p/DSNKXfTCXr9/?igsh=cXdzaGF6ejhyOXRh" target="_blank" class="action-link">✨ Lihat Detail di Instagram</a>
                     </div>
                 </div>
             </section>
@@ -305,7 +291,7 @@
             var detail = document.getElementById(id);
             var btn = detail.previousElementSibling;
             detail.style.display = detail.style.display === "block" ? "none" : "block";
-            btn.innerText = detail.style.display === "block" ? "- Tutup" : "+ Detail";
+            btn.innerText = detail.style.display === "block" ? "- Tutup" : "+ Detail & Media";
             reveal();
         }
     </script>
