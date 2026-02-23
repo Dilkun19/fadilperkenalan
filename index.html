@@ -19,14 +19,14 @@
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND BOLA (Dibuat Tidak Menghalangi Klik) --- */
+        /* --- BACKGROUND BOLA --- */
         .background-blobs { 
             position: fixed; 
             top: 0; left: 0; 
             width: 100%; height: 100%; 
             z-index: 1; 
             overflow: hidden;
-            pointer-events: none; /* Kunci: Biar klik gak nyangkut di sini */
+            pointer-events: none;
         }
         
         .blob {
@@ -59,7 +59,7 @@
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
             text-transform: uppercase; font-weight: bold; margin-top: 30px;
-            position: relative; z-index: 10005; /* Paling depan */
+            position: relative; z-index: 10005;
             pointer-events: auto;
         }
         .btn-enter:hover { background: var(--gold); color: var(--black); }
@@ -68,7 +68,27 @@
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 30px 20px; }
-        section { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
+
+        /* --- EFEK SCROLL POP UP --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        section { 
+            background: rgba(30, 30, 30, 0.8); 
+            backdrop-filter: blur(5px); 
+            margin-bottom: 25px; 
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(212, 175, 55, 0.1); 
+        }
         h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 20px; }
 
         /* --- SKILL BARS --- */
@@ -103,19 +123,19 @@
         </header>
 
         <div class="container">
-            <section>
+            <section class="reveal">
                 <h2>Tentang Saya</h2>
                 <p>Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis. Mahir menggunakan <strong>Ibis Paint X</strong> dan <strong>FlipaClip</strong> untuk menghasilkan animatic berkualitas.</p>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>Pendidikan</h2>
                 <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
                 <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (2026)</p>
                 <p style="font-size: 0.9rem; color: #bbb;">Mempelajari IT seperti design website, hosting, dan membangun jaringan.</p>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>Keahlian</h2>
                 <div class="skill-container">
                     <span>Storyboard & Visual Storytelling (90%)</span>
@@ -131,7 +151,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>Pengalaman</h2>
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi – Software</p>
@@ -155,7 +175,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>Kontak</h2>
                 <p>Instagram: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
                 <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
@@ -166,6 +186,7 @@
     </div>
 
     <script>
+        // Fungsi Utama Masuk
         function masukWeb() {
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
@@ -175,13 +196,34 @@
                 main.style.display = 'block';
                 setTimeout(function() {
                     main.style.opacity = '1';
-                    document.querySelectorAll('.skill-fill').forEach(function(bar) {
-                        bar.style.width = bar.getAttribute('data-skill');
-                    });
+                    reveal(); // Jalankan cek posisi scroll saat masuk
                 }, 50);
             }, 800);
         }
 
+        // Fungsi Animasi Pop Up saat Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Jarak munculnya
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                    // Jalankan animasi bar skill jika section skill aktif
+                    var bars = reveals[i].querySelectorAll('.skill-fill');
+                    bars.forEach(function(bar) {
+                        bar.style.width = bar.getAttribute('data-skill');
+                    });
+                }
+            }
+        }
+
+        // Cek scroll setiap kali layar digerakkan
+        window.addEventListener("scroll", reveal);
+
+        // Fungsi Detail Project
         function toggleDetail(id) {
             var detail = document.getElementById(id);
             var btn = detail.previousElementSibling;
