@@ -17,31 +17,53 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: var(--black); color: var(--text);
             overflow-x: hidden;
+            user-select: none;
         }
 
         /* --- BACKGROUND BOLA --- */
         .background-blobs { 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            z-index: 1; 
-            overflow: hidden;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 1; overflow: hidden; pointer-events: none;
         }
-        
         .blob {
             position: absolute;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0) 70%);
-            border-radius: 50%;
-            filter: blur(50px);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0) 70%);
+            border-radius: 50%; filter: blur(50px);
             animation: move 20s infinite alternate ease-in-out;
         }
-
         @keyframes move {
             0% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(100px, 50px) scale(1.1); }
             100% { transform: translate(-50px, 150px) scale(1); }
         }
+
+        /* --- EFEK KLIK (SPARK) --- */
+        .click-spark {
+            position: fixed; width: 10px; height: 10px;
+            background: var(--gold); border-radius: 50%;
+            pointer-events: none; z-index: 100000;
+            transform: translate(-50%, -50%);
+            animation: spark-anim 0.6s ease-out forwards;
+        }
+        @keyframes spark-anim {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+        }
+
+        /* --- MUSIK PLAYER --- */
+        .music-player {
+            position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+            background: rgba(30, 30, 30, 0.9); padding: 10px;
+            border-radius: 50px; border: 1px solid var(--gold);
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transition: 0.3s;
+        }
+        .music-btn {
+            background: var(--gold); border: none; width: 35px; height: 35px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .music-text { font-size: 0.7rem; color: var(--gold); font-weight: bold; margin-right: 5px; }
 
         /* --- SPLASH SCREEN --- */
         #welcome-screen {
@@ -49,18 +71,11 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
-        
-        #welcome-screen h1 { 
-            font-size: 2.2rem; color: var(--gold); text-transform: uppercase; 
-            letter-spacing: 5px; text-align: center; margin: 0 20px;
-        }
-        
+        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; margin: 0 20px; }
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
-            text-transform: uppercase; font-weight: bold; margin-top: 30px;
-            position: relative; z-index: 10005;
-            pointer-events: auto;
+            text-transform: uppercase; font-weight: bold; margin-top: 30px; position: relative; z-index: 10005;
         }
         .btn-enter:hover { background: var(--gold); color: var(--black); }
 
@@ -68,27 +83,11 @@
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 30px 20px; }
+        
+        .reveal { opacity: 0; transform: translateY(30px) scale(0.95); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* --- EFEK SCROLL POP UP --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        section { 
-            background: rgba(30, 30, 30, 0.8); 
-            backdrop-filter: blur(5px); 
-            margin-bottom: 25px; 
-            padding: 25px; 
-            border-radius: 15px; 
-            border: 1px solid rgba(212, 175, 55, 0.1); 
-        }
+        section { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
         h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 20px; }
 
         /* --- SKILL BARS --- */
@@ -96,19 +95,37 @@
         .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
 
+        /* --- PROJECT ITEM --- */
         .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
         .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.95rem; line-height: 1.5; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.85rem; text-decoration: underline; }
 
-        footer { text-align: center; padding: 30px; color: #555; font-size: 0.8rem; }
-        a { color: var(--gold); text-decoration: none; font-weight: bold; }
+        /* --- PAINT SPLASH DECORATION --- */
+        .paint-footer {
+            position: relative; width: 100%; height: 150px; margin-top: 50px;
+            background: var(--gold);
+            clip-path: polygon(0% 45%, 15% 35%, 28% 55%, 42% 30%, 55% 65%, 70% 35%, 85% 60%, 100% 40%, 100% 100%, 0% 100%);
+            display: flex; align-items: flex-end; justify-content: center;
+        }
+        .paint-footer p { color: var(--black); font-weight: bold; margin-bottom: 20px; font-size: 0.9rem; }
     </style>
 </head>
-<body>
+<body onclick="createSpark(event)">
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="background-blobs">
         <div class="blob" style="width: 500px; height: 500px; top: -150px; left: -150px;"></div>
         <div class="blob" style="width: 400px; height: 400px; bottom: -100px; right: -100px;"></div>
+    </div>
+
+    <div class="music-player" id="musicPanel" style="display: none;">
+        <span class="music-text">VIBES</span>
+        <button class="music-btn" onclick="toggleMusic()">
+            <span id="musicIcon">▶</span>
+        </button>
     </div>
 
     <div id="welcome-screen">
@@ -125,18 +142,11 @@
         <div class="container">
             <section class="reveal">
                 <h2>Tentang Saya</h2>
-                <p>Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis. Mahir menggunakan <strong>Ibis Paint X</strong> dan <strong>FlipaClip</strong> untuk menghasilkan animatic berkualitas.</p>
+                <p>Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis. Mahir menggunakan <strong>Ibis Paint X</strong> dan <strong>FlipaClip</strong>.</p>
             </section>
 
             <section class="reveal">
-                <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
-                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (2026)</p>
-                <p style="font-size: 0.9rem; color: #bbb;">Mempelajari IT seperti design website, hosting, dan membangun jaringan.</p>
-            </section>
-
-            <section class="reveal">
-                <h2>Keahlian</h2>
+                <h2>Keahlian Utama</h2>
                 <div class="skill-container">
                     <span>Storyboard & Visual Storytelling (90%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
@@ -145,33 +155,19 @@
                     <span>Animation (80%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
-                <div class="skill-container">
-                    <span>Camera Angle (85%)</span>
-                    <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
-                </div>
             </section>
 
             <section class="reveal">
                 <h2>Pengalaman</h2>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi – Software</p>
-                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Lihat Detail</button>
-                    <div id="pkl" class="detail-box">Mendesain website perusahaan menggunakan WordPress (Jan 2025 - Jun 2025).</div>
-                </div>
-                <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro – Kolaborasi</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Lihat Detail</button>
-                    <div id="collab" class="detail-box">Lead Storyboard: Membuat animasi action terstruktur, mengatur timing, dan menentukan angle kamera.</div>
+                    <div id="collab" class="detail-box">Lead Storyboard: Fokus pada action terstruktur & timing dinamis.</div>
                 </div>
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">Animasi Hantu – Proyek Pribadi</p>
                     <button class="btn-more" onclick="toggleDetail('hantu')">+ Lihat Detail</button>
-                    <div id="hantu" class="detail-box">
-                        <ul style="padding-left: 20px; margin: 0;">
-                            <li>Character Acting: Membuat karakter terasa lebih hidup.</li>
-                            <li>Composition: Mengatur visual agar menarik dan jelas.</li>
-                        </ul>
-                    </div>
+                    <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition visual.</div>
                 </div>
             </section>
 
@@ -182,58 +178,75 @@
             </section>
         </div>
 
-        <footer>&copy; 2026 Fadil Ferdiansyah Saputra</footer>
+        <div class="paint-footer">
+            <p>&copy; 2026 Fadil Ferdiansyah Saputra</p>
+        </div>
     </div>
 
     <script>
-        // Fungsi Utama Masuk
+        // Efek Klik
+        function createSpark(e) {
+            const spark = document.createElement("div");
+            spark.className = "click-spark";
+            spark.style.left = e.clientX + "px";
+            spark.style.top = e.clientY + "px";
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 600);
+        }
+
+        // Kontrol Musik
+        var audio = document.getElementById("bgMusic");
+        var musicIcon = document.getElementById("musicIcon");
+        
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicIcon.innerText = "⏸";
+            } else {
+                audio.pause();
+                musicIcon.innerText = "▶";
+            }
+        }
+
+        // Masuk Web
         function masukWeb() {
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
+            var mPanel = document.getElementById('musicPanel');
+            
             welcome.style.opacity = '0';
             setTimeout(function() {
                 welcome.style.display = 'none';
                 main.style.display = 'block';
+                mPanel.style.display = 'flex'; // Munculkan tombol musik
                 setTimeout(function() {
                     main.style.opacity = '1';
-                    reveal(); // Jalankan cek posisi scroll saat masuk
+                    reveal();
                 }, 50);
             }, 800);
         }
 
-        // Fungsi Animasi Pop Up saat Scroll
+        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Jarak munculnya
-                
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
-                    // Jalankan animasi bar skill jika section skill aktif
                     var bars = reveals[i].querySelectorAll('.skill-fill');
-                    bars.forEach(function(bar) {
-                        bar.style.width = bar.getAttribute('data-skill');
-                    });
+                    bars.forEach(bar => bar.style.width = bar.getAttribute('data-skill'));
                 }
             }
         }
 
-        // Cek scroll setiap kali layar digerakkan
         window.addEventListener("scroll", reveal);
 
-        // Fungsi Detail Project
         function toggleDetail(id) {
             var detail = document.getElementById(id);
             var btn = detail.previousElementSibling;
-            if (detail.style.display === "block") {
-                detail.style.display = "none";
-                btn.innerText = "+ Lihat Detail";
-            } else {
-                detail.style.display = "block";
-                btn.innerText = "- Tutup Detail";
-            }
+            detail.style.display = detail.style.display === "block" ? "none" : "block";
+            btn.innerText = detail.style.display === "block" ? "- Tutup Detail" : "+ Lihat Detail";
         }
     </script>
 </body>
