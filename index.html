@@ -18,9 +18,10 @@
             background-color: var(--black); color: var(--text);
             overflow-x: hidden;
             user-select: none;
+            scroll-behavior: smooth;
         }
 
-        /* --- BACKGROUND BOLA --- */
+        /* --- BACKGROUND --- */
         .background-blobs { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 1; overflow: hidden; pointer-events: none;
@@ -37,7 +38,7 @@
             100% { transform: translate(-50px, 150px) scale(1); }
         }
 
-        /* --- EFEK KLIK (SPARK) --- */
+        /* --- EFEK KLIK --- */
         .click-spark {
             position: fixed; width: 10px; height: 10px;
             background: var(--gold); border-radius: 50%;
@@ -50,13 +51,12 @@
             100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
         }
 
-        /* --- MUSIK PLAYER --- */
+        /* --- MUSIK --- */
         .music-player {
             position: fixed; bottom: 20px; right: 20px; z-index: 10000;
             background: rgba(30, 30, 30, 0.9); padding: 10px;
             border-radius: 50px; border: 1px solid var(--gold);
             display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
         }
         .music-btn {
             background: var(--gold); border: none; width: 35px; height: 35px;
@@ -69,7 +69,7 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
-        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; }
+        #welcome-screen h1 { font-size: 1.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; text-align: center; padding: 0 20px; }
         
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
@@ -77,33 +77,33 @@
             text-transform: uppercase; font-weight: bold; margin-top: 30px; position: relative; z-index: 10005;
         }
 
-        /* --- MAIN CONTENT --- */
+        /* --- CONTENT --- */
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
-        header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
-        .container { max-width: 800px; margin: auto; padding: 30px 20px; }
+        header { text-align: center; padding: 40px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
         
-        .reveal { opacity: 0; transform: translateY(30px) scale(0.95); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        /* FIX: Reveal lebih sensitif untuk HP */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        section { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
-        h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 20px; }
+        section { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); margin-bottom: 20px; padding: 20px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
+        h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 15px; font-size: 1.3rem; }
 
         .skill-container { margin-bottom: 15px; }
-        .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
-        .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
+        .skill-bar { background: #333; border-radius: 10px; height: 8px; width: 100%; overflow: hidden; margin-top: 5px; }
+        .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 1.5s ease-out; }
 
         .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
-        .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.95rem; line-height: 1.5; }
-        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.85rem; text-decoration: underline; }
+        .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.9rem; line-height: 1.5; }
+        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.8rem; text-decoration: underline; }
 
-        /* --- PAINT SPLASH DECORATION --- */
         .paint-footer {
-            position: relative; width: 100%; height: 150px; margin-top: 50px;
+            position: relative; width: 100%; height: 120px; margin-top: 40px;
             background: var(--gold);
             clip-path: polygon(0% 45%, 15% 35%, 28% 55%, 42% 30%, 55% 65%, 70% 35%, 85% 60%, 100% 40%, 100% 100%, 0% 100%);
             display: flex; align-items: flex-end; justify-content: center;
         }
-        .paint-footer p { color: var(--black); font-weight: bold; margin-bottom: 20px; font-size: 0.9rem; }
+        .paint-footer p { color: var(--black); font-weight: bold; margin-bottom: 15px; font-size: 0.8rem; }
     </style>
 </head>
 <body onclick="createSpark(event)">
@@ -113,51 +113,49 @@
     </audio>
 
     <div class="background-blobs">
-        <div class="blob" style="width: 500px; height: 500px; top: -150px; left: -150px;"></div>
-        <div class="blob" style="width: 400px; height: 400px; bottom: -100px; right: -100px;"></div>
+        <div class="blob" style="width: 300px; height: 300px; top: -100px; left: -100px;"></div>
+        <div class="blob" style="width: 250px; height: 250px; bottom: -50px; right: -50px;"></div>
     </div>
 
     <div class="music-player" id="musicPanel" style="display: none;">
-        <span style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">MUSIC</span>
         <button class="music-btn" onclick="toggleMusic()"><span id="musicIcon">⏸</span></button>
     </div>
 
     <div id="welcome-screen">
-        <h1>Fadil Ferdiansyah Saputra</h1>
-        <button class="btn-enter" onclick="masukWeb()">Kenali Lebih Dalam</button>
+        <h1>Fadil Ferdiansyah</h1>
+        <button class="btn-enter" onclick="masukWeb()">MASUK</button>
     </div>
 
     <div id="main-content">
         <header>
-            <h1 style="color: var(--gold); margin: 0;">Fadil Ferdiansyah Saputra</h1>
-            <p style="color: #888;">Storyboard Artist & Animator</p>
+            <h1 style="color: var(--gold); margin: 0; font-size: 1.6rem;">Fadil Ferdiansyah Saputra</h1>
+            <p style="color: #888; font-size: 0.9rem;">Storyboard Artist & Animator</p>
         </header>
 
         <div class="container">
             <section class="reveal">
                 <h2>Tentang Saya</h2>
-                <p>Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis. Mahir menggunakan <strong>Ibis Paint X</strong> dan <strong>FlipaClip</strong>.</p>
+                <p style="font-size: 0.95rem;">Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Ahli <strong>Ibis Paint X</strong> & <strong>FlipaClip</strong>.</p>
             </section>
 
             <section class="reveal">
                 <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
-                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (Lulus 2026)</p>
-                <p style="font-size: 0.9rem; color: #bbb;">Mempelajari dasar-dasar IT, desain web, dan manajemen jaringan.</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1rem;">SMKS Teratai Putih Jakarta</p>
+                <p style="color: var(--gold); margin: 5px 0; font-size: 0.9rem;">Teknik Komputer Jaringan (2026)</p>
             </section>
 
             <section class="reveal">
-                <h2>Keahlian Utama</h2>
+                <h2>Keahlian</h2>
                 <div class="skill-container">
-                    <span>Storyboard & Visual Storytelling (90%)</span>
+                    <span style="font-size: 0.85rem;">Storyboard & Visual Storytelling</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span>Animation (80%)</span>
+                    <span style="font-size: 0.85rem;">Animation</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span>Camera Angle & Composition (85%)</span>
+                    <span style="font-size: 0.85rem;">Camera Angle</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
@@ -165,26 +163,26 @@
             <section class="reveal">
                 <h2>Pengalaman</h2>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi</p>
-                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Lihat Detail</button>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">PKL Duta Teknologi</p>
+                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
                     <div id="pkl" class="detail-box">Mendesain website perusahaan menggunakan WordPress (2025).</div>
                 </div>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro – Kolaborasi</p>
-                    <button class="btn-more" onclick="toggleDetail('collab')">+ Lihat Detail</button>
-                    <div id="collab" class="detail-box">Lead Storyboard: Fokus pada action terstruktur & timing dinamis.</div>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Bacon vs Pyro</p>
+                    <button class="btn-more" onclick="toggleDetail('collab')">+ Detail</button>
+                    <div id="collab" class="detail-box">Lead Storyboard: Fokus pada action terstruktur & timing.</div>
                 </div>
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">Animasi Hantu – Proyek Pribadi</p>
-                    <button class="btn-more" onclick="toggleDetail('hantu')">+ Lihat Detail</button>
-                    <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition visual menggunakan FlipaClip.</div>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Hantu</p>
+                    <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail</button>
+                    <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition menggunakan FlipaClip.</div>
                 </div>
             </section>
 
             <section class="reveal">
                 <h2>Kontak</h2>
-                <p>Instagram: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
-                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
+                <p style="font-size: 0.95rem;">IG: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
+                <p style="font-size: 0.95rem;">Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
             </section>
         </div>
 
@@ -200,8 +198,8 @@
         function createSpark(e) {
             const spark = document.createElement("div");
             spark.className = "click-spark";
-            spark.style.left = e.clientX + "px";
-            spark.style.top = e.clientY + "px";
+            spark.style.left = (e.clientX || e.touches[0].clientX) + "px";
+            spark.style.top = (e.clientY || e.touches[0].clientY) + "px";
             document.body.appendChild(spark);
             setTimeout(() => spark.remove(), 600);
         }
@@ -216,17 +214,16 @@
             var main = document.getElementById('main-content');
             var mPanel = document.getElementById('musicPanel');
             
-            // AUTO PLAY MUSIK
-            audio.play().catch(function(e) { console.log("Browser block auto-play."); });
+            audio.play().catch(e => console.log("Audio block"));
             
             welcome.style.opacity = '0';
-            setTimeout(function() {
+            setTimeout(() => {
                 welcome.style.display = 'none';
                 main.style.display = 'block';
                 mPanel.style.display = 'flex';
-                setTimeout(function() {
+                setTimeout(() => {
                     main.style.opacity = '1';
-                    reveal();
+                    reveal(); // Jalankan reveal pertama kali
                 }, 50);
             }, 800);
         }
@@ -236,7 +233,10 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
+                // Sensitivitas diperkecil (dari 100 ke 50) agar mudah muncul di HP
+                var elementVisible = 50; 
+                
+                if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                     var bars = reveals[i].querySelectorAll('.skill-fill');
                     bars.forEach(bar => bar.style.width = bar.getAttribute('data-skill'));
@@ -244,13 +244,16 @@
             }
         }
 
+        // Event listener untuk scroll di HP dan Desktop
         window.addEventListener("scroll", reveal);
+        window.addEventListener("touchmove", reveal);
 
         function toggleDetail(id) {
             var detail = document.getElementById(id);
             var btn = detail.previousElementSibling;
             detail.style.display = detail.style.display === "block" ? "none" : "block";
-            btn.innerText = detail.style.display === "block" ? "- Tutup Detail" : "+ Lihat Detail";
+            btn.innerText = detail.style.display === "block" ? "- Tutup" : "+ Detail";
+            reveal(); // Cek reveal lagi setelah konten memanjang
         }
     </script>
 </body>
