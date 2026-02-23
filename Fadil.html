@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Fadil Ferdiansyah Saputra</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #121212;
+            --gray: #1e1e1e;
+            --text: #e0e0e0;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND BOLA-BOLA --- */
+        .background-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: move 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes move {
+            from { transform: translate(0, 0); }
+            to { transform: translate(80px, 120px); }
+        }
+
+        /* --- HALAMAN DEPAN (SPLASH SCREEN) --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--black);
+            z-index: 999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        #welcome-screen h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-enter {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            color: var(--gold);
+            background: transparent;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-enter:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- ISI KONTEN (AWALNYA SEMBUNYI) --- */
+        #main-content {
+            opacity: 0;
+            display: none;
+            transition: opacity 1s ease;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: var(--gray);
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        h2 { color: var(--gold); border-left: 3px solid var(--gold); padding-left: 15px; }
+
+        .skill-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.85rem;
+        }
+
+        a { color: var(--gold); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="background-blobs">
+        <div class="blob" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+        <div class="blob" style="width: 350px; height: 350px; bottom: -50px; right: -50px; animation-delay: -3s;"></div>
+    </div>
+
+    <div id="welcome-screen">
+        <h1>Fadil Ferdiansyah Saputra</h1>
+        <button class="btn-enter" onclick="showContent()">Kenali Lebih Dalam</button>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1 style="color: var(--gold);">PORTFOLIO</h1>
+            <p style="color: #888;">Storyboard Artist & Animator</p>
+        </header>
+
+        <div class="container">
+            <section>
+                <h2>Tentang Saya</h2>
+                <p>Lulusan <strong>SMK Teratai Putih Jakarta</strong> (TKJ). Ahli dalam pembuatan storyboard dan animasi 2D yang komunikatif dan menarik.</p>
+            </section>
+
+            <section>
+                <h2>Keahlian</h2>
+                <span class="skill-badge">Storyboard Artist</span>
+                <span class="skill-badge">2D Animation</span>
+                <span class="skill-badge">Illustrator</span>
+                <span class="skill-badge">IT Support</span>
+            </section>
+
+            <section>
+                <h2>Proyek Unggulan</h2>
+                <h3 style="color: var(--gold);">Film Animasi "Hantu"</h3>
+                <p>Proyek animasi orisinal yang dikerjakan secara mandiri dari tahap konsep hingga produksi.</p>
+                <p>Cek karya lainnya di Instagram: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
+            </section>
+
+            <section>
+                <h2>Hubungi</h2>
+                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
+            </section>
+        </div>
+
+        <footer style="text-align: center; padding: 40px; color: #555; font-size: 0.8rem;">
+            &copy; 2026 Fadil Ferdiansyah Saputra
+        </footer>
+    </div>
+
+    <script>
+        function showContent() {
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+            
+            // Sembunyikan halaman depan
+            welcome.style.opacity = '0';
+            welcome.style.visibility = 'hidden';
+
+            // Munculkan isi portofolio
+            setTimeout(() => {
+                main.style.display = 'block';
+                setTimeout(() => {
+                    main.style.opacity = '1';
+                }, 50);
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>
