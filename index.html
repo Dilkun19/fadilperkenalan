@@ -33,18 +33,20 @@
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-color: var(--black); z-index: 999; transition: 0.8s;
+            background-color: var(--black); z-index: 9999; opacity: 1; visibility: visible; transition: 0.8s;
         }
-        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; }
+        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; margin: 0 20px; }
+        
         .btn-enter {
-            padding: 12px 30px; font-size: 1rem; color: var(--gold); background: transparent;
+            padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
-            text-transform: uppercase; font-weight: bold; margin-top: 20px;
+            text-transform: uppercase; font-weight: bold; margin-top: 30px;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn-enter:hover { background: var(--gold); color: var(--black); }
+        .btn-enter:active { background: var(--gold); color: var(--black); }
 
         /* --- CONTENT --- */
-        #main-content { opacity: 0; display: none; transition: 1s; }
+        #main-content { opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 30px 20px; }
         section { background: var(--gray); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
@@ -56,11 +58,11 @@
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
 
         /* --- PROJECT DETAIL --- */
-        #project-detail { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; color: #bbb; font-style: italic; }
-        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 0; font-size: 0.9rem; text-decoration: underline; }
+        #project-detail { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; color: #bbb; }
+        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 10px 0; font-size: 0.9rem; text-decoration: underline; }
 
         footer { text-align: center; padding: 30px; color: #555; font-size: 0.8rem; }
-        a { color: var(--gold); text-decoration: none; }
+        a { color: var(--gold); text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -72,7 +74,7 @@
 
     <div id="welcome-screen">
         <h1>Fadil Ferdiansyah Saputra</h1>
-        <button class="btn-enter" onclick="showContent()">Kenali Lebih Dalam</button>
+        <button class="btn-enter" onclick="masukWeb()">Kenali Lebih Dalam</button>
     </div>
 
     <div id="main-content">
@@ -84,36 +86,38 @@
         <div class="container">
             <section>
                 <h2>Pendidikan</h2>
-                <p><strong>SMK Teratai Putih Jakarta</strong></p>
-                <p style="color: #888; margin-top: -10px;">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
+                <p style="margin: 0; font-weight: bold;">SMK Teratai Putih Jakarta</p>
+                <p style="color: #888; margin: 5px 0 0 0;">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
             </section>
 
             <section>
                 <h2>Keahlian</h2>
                 <div class="skill-container">
                     <span>Storyboard (90%)</span>
-                    <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                    <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
                 </div>
                 <div class="skill-container">
                     <span>Animator (80%)</span>
-                    <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+                    <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
                     <span>Camera Angle (85%)</span>
-                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                    <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
 
             <section>
                 <h2>Project</h2>
-                <ul style="padding-left: 20px;">
+                <ul style="padding-left: 20px; margin-bottom: 10px;">
                     <li>Film Animasi Pendek: "Hantu"</li>
                     <li>Digital Storyboarding</li>
                 </ul>
                 <button class="btn-more" id="btn-toggle" onclick="toggleProject()">+ Baca Selengkapnya</button>
                 
                 <div id="project-detail">
-                    Project "Hantu" adalah karya animasi pribadi di mana saya berperan penuh dalam menyusun alur cerita (storyboard), desain karakter, hingga proses gerak animasi. Fokus utama project ini adalah mengeksplorasi nuansa horor visual melalui teknik camera angle yang dramatis.
+                    <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
+                        Project "Hantu" adalah karya animasi pribadi di mana saya berperan penuh dalam menyusun alur cerita (storyboard), desain karakter, hingga proses gerak animasi. Fokus utama project ini adalah mengeksplorasi nuansa horor visual melalui teknik camera angle yang dramatis.
+                    </p>
                 </div>
             </section>
 
@@ -128,22 +132,34 @@
     </div>
 
     <script>
-        function showContent() {
-            document.getElementById('welcome-screen').style.opacity = '0';
-            document.getElementById('welcome-screen').style.visibility = 'hidden';
-            setTimeout(() => {
-                const main = document.getElementById('main-content');
+        // Fungsi Masuk Web
+        function masukWeb() {
+            var welcome = document.getElementById('welcome-screen');
+            var main = document.getElementById('main-content');
+            
+            // Sembunyikan Splash Screen
+            welcome.style.opacity = '0';
+            setTimeout(function() {
+                welcome.style.visibility = 'hidden';
+                welcome.style.display = 'none';
+                
+                // Munculkan Konten
                 main.style.display = 'block';
-                setTimeout(() => { 
-                    main.style.opacity = '1'; 
-                    document.querySelectorAll('.skill-fill').forEach(f => f.style.width = f.getAttribute('data-width'));
+                setTimeout(function() {
+                    main.style.opacity = '1';
+                    // Animasi Bar Skill
+                    var bars = document.querySelectorAll('.skill-fill');
+                    bars.forEach(function(bar) {
+                        bar.style.width = bar.getAttribute('data-skill');
+                    });
                 }, 50);
             }, 800);
         }
 
+        // Fungsi Toggle Project
         function toggleProject() {
-            const detail = document.getElementById('project-detail');
-            const btn = document.getElementById('btn-toggle');
+            var detail = document.getElementById('project-detail');
+            var btn = document.getElementById('btn-toggle');
             if (detail.style.display === "none" || detail.style.display === "") {
                 detail.style.display = "block";
                 btn.innerText = "- Tutup Detail";
