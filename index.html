@@ -98,6 +98,9 @@
         .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.85rem; line-height: 1.6; }
         .detail-box ul { padding-left: 20px; margin: 5px 0; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.8rem; text-decoration: underline; }
+        
+        .video-link { display: inline-block; margin-top: 10px; color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 5px 15px; border-radius: 5px; font-size: 0.8rem; transition: 0.3s; }
+        .video-link:hover { background: var(--gold); color: var(--black); }
 
         .paint-footer {
             position: relative; width: 100%; height: 120px; margin-top: 40px;
@@ -172,9 +175,7 @@
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Jan 2025 - Jun 2025</p>
                     <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
                     <div id="pkl" class="detail-box">
-                        <ul>
-                            <li>Mendesain sebuah website perusahaan menggunakan wordpress.</li>
-                        </ul>
+                        <ul><li>Mendesain sebuah website perusahaan menggunakan wordpress.</li></ul>
                     </div>
                 </div>
 
@@ -193,7 +194,7 @@
                 </div>
 
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 1.05rem;">Animasi hantu - Proyek pribadi</p>
+                    <p style="margin: 0; font-weight: bold; font-size: 1.05rem;">Animasi Hantu – Proyek Pribadi</p>
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">2023 - 2024</p>
                     <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail</button>
                     <div id="hantu" class="detail-box">
@@ -201,6 +202,9 @@
                             <li>Membuat character acting agar character terasa lebih hidup dan realis.</li>
                             <li>Mengatur composition untuk membuat visual lebih menarik dan jelas.</li>
                         </ul>
+                        <p style="margin: 10px 0 5px 0; font-weight: bold; color: var(--gold);">Lihat Hasil Cut:</p>
+                        <a href="https://drive.google.com/file/d/1TTTWeQgEhMZCuM_W0M3ObLEa14SW6pR-/view?usp=drivesdk" target="_blank" class="video-link">🎬 Cut Satu</a>
+                        <a href="https://drive.google.com/file/d/1TTTWeQgEhMZCuM_W0M3ObLEa14SW6pR-/view?usp=drivesdk" target="_blank" class="video-link">🎬 Cut Dua</a>
                     </div>
                 </div>
             </section>
