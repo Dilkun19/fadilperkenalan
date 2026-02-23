@@ -38,7 +38,7 @@
             100% { transform: translate(-50px, 150px) scale(1); }
         }
 
-        /* --- EFEK SPARK --- */
+        /* --- EFEK KLIK --- */
         .click-spark {
             position: fixed; width: 10px; height: 10px;
             background: var(--gold); border-radius: 50%;
@@ -70,7 +70,7 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
-        #welcome-screen h1 { font-size: 1.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; text-align: center; padding: 0 20px; line-height: 1.4; }
+        #welcome-screen h1 { font-size: 1.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; text-align: center; padding: 0 20px; }
         
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
@@ -78,7 +78,7 @@
             text-transform: uppercase; font-weight: bold; margin-top: 30px; position: relative; z-index: 10005;
         }
 
-        /* --- MAIN CONTENT --- */
+        /* --- CONTENT --- */
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 40px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 20px; }
@@ -90,12 +90,13 @@
         h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 15px; font-size: 1.3rem; }
 
         .skill-container { margin-bottom: 15px; }
-        .skill-header { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 5px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
         .skill-bar { background: #333; border-radius: 10px; height: 8px; width: 100%; overflow: hidden; }
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 1.5s ease-out; }
 
         .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
-        .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.9rem; line-height: 1.5; }
+        .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.85rem; line-height: 1.6; }
+        .detail-box ul { padding-left: 20px; margin: 5px 0; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.8rem; text-decoration: underline; }
 
         .paint-footer {
@@ -119,7 +120,6 @@
     </div>
 
     <div class="music-player" id="musicPanel" style="display: none;">
-        <span style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">BACK TO BEAT</span>
         <button class="music-btn" onclick="toggleMusic()"><span id="musicIcon">⏸</span></button>
     </div>
 
@@ -137,60 +137,76 @@
         <div class="container">
             <section class="reveal">
                 <h2>Tentang Saya</h2>
-                <p>Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Fokus pada pengembangan skill visual storytelling dan sinematografi.</p>
+                <p style="font-size: 0.95rem;">Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Ahli <strong>Ibis Paint X</strong> & <strong>FlipaClip</strong>.</p>
             </section>
 
             <section class="reveal">
                 <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
-                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (2026)</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1rem;">SMKS Teratai Putih Jakarta</p>
+                <p style="color: var(--gold); margin: 5px 0; font-size: 0.9rem;">Teknik Komputer Jaringan (2026)</p>
             </section>
 
             <section class="reveal">
                 <h2>Keahlian</h2>
                 <div class="skill-container">
-                    <div class="skill-header"><span>Storyboard & Visual Storytelling</span><span>90%</span></div>
+                    <div class="skill-info"><span>Storyboard & Visual Storytelling</span><span>90%</span></div>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-header"><span>Animation</span><span>80%</span></div>
+                    <div class="skill-info"><span>Animation</span><span>80%</span></div>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <div class="skill-header"><span>Camera Angle & Composition</span><span>85%</span></div>
+                    <div class="skill-info"><span>Camera Angle & Composition</span><span>85%</span></div>
                     <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
 
             <section class="reveal">
-                <h2>Pengalaman Detail</h2>
+                <h2>Pengalaman</h2>
+                
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">Duta Teknologi (PKL)</p>
-                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail Pengalaman</button>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">PKL Duta Teknologi – Software</p>
+                    <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Jan 2025 - Jun 2025</p>
+                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
                     <div id="pkl" class="detail-box">
-                        Fokus pada bagian software dan pengembangan website. Berkontribusi aktif dalam mendukung infrastruktur IT perusahaan dan siap belajar hal baru.
+                        <ul>
+                            <li>Mendesain sebuah website perusahaan menggunakan WordPress.</li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">Animasi "Hantu" (Proyek Pribadi)</p>
-                    <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail Proyek</button>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Bacon vs Pyro – Proyek Kolaborasi</p>
+                    <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Sept 2025 - Sekarang</p>
+                    <button class="btn-more" onclick="toggleDetail('collab')">+ Detail</button>
+                    <div id="collab" class="detail-box">
+                        <ul>
+                            <li>Berperan menjadi lead storyboard dalam membuat animasi action yang terstruktur.</li>
+                            <li>Mengatur timing agar adegan action terasa dinamis.</li>
+                            <li>Membuat animatic versi video dari storyboard dengan timing kasar.</li>
+                            <li>Menentukan angel kamera dibeberapa scene action.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Hantu – Proyek Pribadi</p>
+                    <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">2023 - 2024</p>
+                    <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail</button>
                     <div id="hantu" class="detail-box">
-                        Eksperimen mendalam pada character acting dan komposisi visual. Merupakan langkah awal dalam menghasilkan karya berkualitas sebagai junior storyboard artist.
-                    </div>
-                </div>
-                <div class="project-item">
-                    <p style="margin: 0; font-weight: bold;">Tujuan Karier & Tantangan</p>
-                    <button class="btn-more" onclick="toggleDetail('career')">+ Detail Visi</button>
-                    <div id="career" class="detail-box">
-                        Berkomitmen untuk terus belajar dari referensi dan feedback. Melatih disiplin waktu serta konsistensi untuk memberikan kontribusi nyata bagi perusahaan.
+                        <ul>
+                            <li>Membuat character acting agar character terasa lebih hidup dan realis.</li>
+                            <li>Mengatur composition untuk membuat visual lebih menarik dan jelas.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
             <section class="reveal">
                 <h2>Kontak</h2>
-                <p>IG: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
-                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
+                <p style="font-size: 0.95rem;">IG: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
+                <p style="font-size: 0.95rem;">Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
             </section>
         </div>
 
@@ -222,7 +238,7 @@
             var main = document.getElementById('main-content');
             var mPanel = document.getElementById('musicPanel');
             
-            audio.play().catch(e => console.log("Audio block bypassed"));
+            audio.play().catch(e => console.log("Audio block"));
             
             welcome.style.opacity = '0';
             setTimeout(() => {
