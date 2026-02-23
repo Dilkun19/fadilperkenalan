@@ -57,13 +57,11 @@
             border-radius: 50px; border: 1px solid var(--gold);
             display: flex; align-items: center; gap: 10px;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            transition: 0.3s;
         }
         .music-btn {
             background: var(--gold); border: none; width: 35px; height: 35px;
             border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
-        .music-text { font-size: 0.7rem; color: var(--gold); font-weight: bold; margin-right: 5px; }
 
         /* --- SPLASH SCREEN --- */
         #welcome-screen {
@@ -71,15 +69,15 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
-        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; margin: 0 20px; }
+        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; }
+        
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
             text-transform: uppercase; font-weight: bold; margin-top: 30px; position: relative; z-index: 10005;
         }
-        .btn-enter:hover { background: var(--gold); color: var(--black); }
 
-        /* --- CONTENT --- */
+        /* --- MAIN CONTENT --- */
         #main-content { position: relative; z-index: 10; opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
         header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .container { max-width: 800px; margin: auto; padding: 30px 20px; }
@@ -90,12 +88,10 @@
         section { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
         h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 20px; }
 
-        /* --- SKILL BARS --- */
         .skill-container { margin-bottom: 15px; }
         .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
 
-        /* --- PROJECT ITEM --- */
         .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
         .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.95rem; line-height: 1.5; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.85rem; text-decoration: underline; }
@@ -122,10 +118,8 @@
     </div>
 
     <div class="music-player" id="musicPanel" style="display: none;">
-        <span class="music-text">VIBES</span>
-        <button class="music-btn" onclick="toggleMusic()">
-            <span id="musicIcon">▶</span>
-        </button>
+        <span style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">MUSIC</span>
+        <button class="music-btn" onclick="toggleMusic()"><span id="musicIcon">⏸</span></button>
     </div>
 
     <div id="welcome-screen">
@@ -146,6 +140,13 @@
             </section>
 
             <section class="reveal">
+                <h2>Pendidikan</h2>
+                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
+                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (Lulus 2026)</p>
+                <p style="font-size: 0.9rem; color: #bbb;">Mempelajari dasar-dasar IT, desain web, dan manajemen jaringan.</p>
+            </section>
+
+            <section class="reveal">
                 <h2>Keahlian Utama</h2>
                 <div class="skill-container">
                     <span>Storyboard & Visual Storytelling (90%)</span>
@@ -155,10 +156,19 @@
                     <span>Animation (80%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
+                <div class="skill-container">
+                    <span>Camera Angle & Composition (85%)</span>
+                    <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
+                </div>
             </section>
 
             <section class="reveal">
                 <h2>Pengalaman</h2>
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi</p>
+                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Lihat Detail</button>
+                    <div id="pkl" class="detail-box">Mendesain website perusahaan menggunakan WordPress (2025).</div>
+                </div>
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro – Kolaborasi</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Lihat Detail</button>
@@ -167,7 +177,7 @@
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">Animasi Hantu – Proyek Pribadi</p>
                     <button class="btn-more" onclick="toggleDetail('hantu')">+ Lihat Detail</button>
-                    <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition visual.</div>
+                    <div id="hantu" class="detail-box">Eksperimen Character Acting & Composition visual menggunakan FlipaClip.</div>
                 </div>
             </section>
 
@@ -184,7 +194,9 @@
     </div>
 
     <script>
-        // Efek Klik
+        var audio = document.getElementById("bgMusic");
+        var musicIcon = document.getElementById("musicIcon");
+
         function createSpark(e) {
             const spark = document.createElement("div");
             spark.className = "click-spark";
@@ -194,31 +206,24 @@
             setTimeout(() => spark.remove(), 600);
         }
 
-        // Kontrol Musik
-        var audio = document.getElementById("bgMusic");
-        var musicIcon = document.getElementById("musicIcon");
-        
         function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-                musicIcon.innerText = "⏸";
-            } else {
-                audio.pause();
-                musicIcon.innerText = "▶";
-            }
+            if (audio.paused) { audio.play(); musicIcon.innerText = "⏸"; }
+            else { audio.pause(); musicIcon.innerText = "▶"; }
         }
 
-        // Masuk Web
         function masukWeb() {
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
             var mPanel = document.getElementById('musicPanel');
             
+            // AUTO PLAY MUSIK
+            audio.play().catch(function(e) { console.log("Browser block auto-play."); });
+            
             welcome.style.opacity = '0';
             setTimeout(function() {
                 welcome.style.display = 'none';
                 main.style.display = 'block';
-                mPanel.style.display = 'flex'; // Munculkan tombol musik
+                mPanel.style.display = 'flex';
                 setTimeout(function() {
                     main.style.opacity = '1';
                     reveal();
@@ -226,7 +231,6 @@
             }, 800);
         }
 
-        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
