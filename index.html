@@ -19,12 +19,12 @@
             overflow-x: hidden;
         }
 
-        /* --- PERBAIKAN BACKGROUND BOLA --- */
+        /* --- BACKGROUND BOLA --- */
         .background-blobs { 
             position: fixed; 
             top: 0; left: 0; 
             width: 100%; height: 100%; 
-            z-index: 0; /* Di atas background hitam tapi di bawah konten */
+            z-index: 0; 
             overflow: hidden;
             pointer-events: none;
         }
@@ -55,7 +55,6 @@
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
             text-transform: uppercase; font-weight: bold; margin-top: 30px;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
         }
         .btn-enter:hover { background: var(--gold); color: var(--black); }
 
@@ -71,8 +70,9 @@
         .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
 
-        /* --- TOGGLE DETAIL --- */
+        /* --- PROJECT ITEM --- */
         .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
+        .project-item:last-child { border: none; }
         .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.95rem; line-height: 1.5; }
         .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.85rem; text-decoration: underline; }
 
@@ -113,7 +113,7 @@
             </section>
 
             <section>
-                <h2>Keahlian</h2>
+                <h2>Keahlian Utama</h2>
                 <div class="skill-container">
                     <span>Storyboard & Visual Storytelling (90%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
@@ -123,63 +123,36 @@
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span>Camera Angle (85%)</span>
+                    <span>Camera Angle & Composition (85%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
 
             <section>
                 <h2>Pengalaman</h2>
+                
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi – Software</p>
+                    <p style="color: #888; font-size: 0.85rem;">Jan 2025 - Jun 2025</p>
                     <button class="btn-more" onclick="toggleDetail('pkl')">+ Lihat Detail</button>
-                    <div id="pkl" class="detail-box">Mendesain website perusahaan menggunakan WordPress (Jan 2025 - Jun 2025).</div>
+                    <div id="pkl" class="detail-box">
+                        Mendesain sebuah website perusahaan menggunakan WordPress.
+                    </div>
                 </div>
+
                 <div class="project-item">
                     <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro – Kolaborasi</p>
+                    <p style="color: #888; font-size: 0.85rem;">Sept 2025 - Sekarang</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Lihat Detail</button>
-                    <div id="collab" class="detail-box">Lead Storyboard: Membuat animasi action terstruktur, mengatur timing, dan menentukan angle kamera.</div>
+                    <div id="collab" class="detail-box">
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Lead Storyboard dalam membuat animasi action yang terstruktur.</li>
+                            <li>Mengatur timing agar adegan action terasa dinamis.</li>
+                            <li>Menentukan angle kamera di beberapa scene action.</li>
+                        </ul>
+                    </div>
                 </div>
-            </section>
 
-            <section>
-                <h2>Kontak</h2>
-                <p>Instagram: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
-                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
-            </section>
-        </div>
-
-        <footer>&copy; 2026 Fadil Ferdiansyah Saputra</footer>
-    </div>
-
-    <script>
-        function masukWeb() {
-            var welcome = document.getElementById('welcome-screen');
-            var main = document.getElementById('main-content');
-            welcome.style.opacity = '0';
-            setTimeout(function() {
-                welcome.style.display = 'none';
-                main.style.display = 'block';
-                setTimeout(function() {
-                    main.style.opacity = '1';
-                    document.querySelectorAll('.skill-fill').forEach(function(bar) {
-                        bar.style.width = bar.getAttribute('data-skill');
-                    });
-                }, 50);
-            }, 800);
-        }
-
-        function toggleDetail(id) {
-            var detail = document.getElementById(id);
-            var btn = detail.previousElementSibling;
-            if (detail.style.display === "block") {
-                detail.style.display = "none";
-                btn.innerText = "+ Lihat Detail";
-            } else {
-                detail.style.display = "block";
-                btn.innerText = "- Tutup Detail";
-            }
-        }
-    </script>
-</body>
-</html>
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold;">Animasi Hantu – Proyek Pribadi</p>
+                    <p style="color: #888; font-size:
