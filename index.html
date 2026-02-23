@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Fadil Ferdiansyah Saputra</title>
+    <title>Fadil Ferdiansyah Saputra | Portfolio</title>
     <style>
         :root {
             --gold: #d4af37;
@@ -13,27 +13,148 @@
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+            margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--black);
-            color: var(--text);
+            background-color: var(--black); color: var(--text);
             overflow-x: hidden;
         }
 
         /* --- BACKGROUND BOLA --- */
-        .background-blobs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        .background-blobs { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .blob {
+            position: absolute;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%; filter: blur(50px);
+            animation: move 15s infinite alternate ease-in-out;
+        }
+        @keyframes move { from { transform: translate(0, 0); } to { transform: translate(80px, 120px); } }
+
+        /* --- SPLASH SCREEN --- */
+        #welcome-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background-color: var(--black); z-index: 999; transition: 0.8s;
+        }
+        #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; }
+        .btn-enter {
+            padding: 12px 30px; font-size: 1rem; color: var(--gold); background: transparent;
+            border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
+            text-transform: uppercase; font-weight: bold; margin-top: 20px;
+        }
+        .btn-enter:hover { background: var(--gold); color: var(--black); }
+
+        /* --- CONTENT --- */
+        #main-content { opacity: 0; display: none; transition: 1s; }
+        header { text-align: center; padding: 60px 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .container { max-width: 800px; margin: auto; padding: 30px 20px; }
+        section { background: var(--gray); margin-bottom: 25px; padding: 25px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.1); }
+        h2 { color: var(--gold); border-left: 4px solid var(--gold); padding-left: 15px; margin-bottom: 20px; }
+
+        /* --- SKILL BARS --- */
+        .skill-container { margin-bottom: 15px; }
+        .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
+        .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
+
+        /* --- PROJECT DETAIL --- */
+        #project-detail { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; color: #bbb; font-style: italic; }
+        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 0; font-size: 0.9rem; text-decoration: underline; }
+
+        footer { text-align: center; padding: 30px; color: #555; font-size: 0.8rem; }
+        a { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="background-blobs">
+        <div class="blob" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+        <div class="blob" style="width: 350px; height: 350px; bottom: -50px; right: -50px;"></div>
+    </div>
+
+    <div id="welcome-screen">
+        <h1>Fadil Ferdiansyah Saputra</h1>
+        <button class="btn-enter" onclick="showContent()">Kenali Lebih Dalam</button>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1 style="color: var(--gold); margin: 0;">Fadil Ferdiansyah Saputra</h1>
+            <p style="color: #888;">Storyboard Artist & Animator</p>
+        </header>
+
+        <div class="container">
+            <section>
+                <h2>Pendidikan</h2>
+                <p><strong>SMK Teratai Putih Jakarta</strong></p>
+                <p style="color: #888; margin-top: -10px;">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
+            </section>
+
+            <section>
+                <h2>Keahlian</h2>
+                <div class="skill-container">
+                    <span>Storyboard (90%)</span>
+                    <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-container">
+                    <span>Animator (80%)</span>
+                    <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+                </div>
+                <div class="skill-container">
+                    <span>Camera Angle (85%)</span>
+                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Project</h2>
+                <ul style="padding-left: 20px;">
+                    <li>Film Animasi Pendek: "Hantu"</li>
+                    <li>Digital Storyboarding</li>
+                </ul>
+                <button class="btn-more" id="btn-toggle" onclick="toggleProject()">+ Baca Selengkapnya</button>
+                
+                <div id="project-detail">
+                    Project "Hantu" adalah karya animasi pribadi di mana saya berperan penuh dalam menyusun alur cerita (storyboard), desain karakter, hingga proses gerak animasi. Fokus utama project ini adalah mengeksplorasi nuansa horor visual melalui teknik camera angle yang dramatis.
+                </div>
+            </section>
+
+            <section>
+                <h2>Kontak</h2>
+                <p>Instagram: <a href="https://instagram.com/_saputra_19_" target="_blank">@_saputra_19_</a></p>
+                <p>Email: <a href="mailto:saputrakeren86@gmail.com">saputrakeren86@gmail.com</a></p>
+            </section>
+        </div>
+
+        <footer>&copy; 2026 Fadil Ferdiansyah Saputra</footer>
+    </div>
+
+    <script>
+        function showContent() {
+            document.getElementById('welcome-screen').style.opacity = '0';
+            document.getElementById('welcome-screen').style.visibility = 'hidden';
+            setTimeout(() => {
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => { 
+                    main.style.opacity = '1'; 
+                    document.querySelectorAll('.skill-fill').forEach(f => f.style.width = f.getAttribute('data-width'));
+                }, 50);
+            }, 800);
         }
 
-        .blob {
+        function toggleProject() {
+            const detail = document.getElementById('project-detail');
+            const btn = document.getElementById('btn-toggle');
+            if (detail.style.display === "none" || detail.style.display === "") {
+                detail.style.display = "block";
+                btn.innerText = "- Tutup Detail";
+            } else {
+                detail.style.display = "none";
+                btn.innerText = "+ Baca Selengkapnya";
+            }
+        }
+    </script>
+</body>
+</html>
             position: absolute;
             background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
             border-radius: 50%;
