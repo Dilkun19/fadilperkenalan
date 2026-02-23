@@ -33,17 +33,15 @@
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background-color: var(--black); z-index: 9999; opacity: 1; visibility: visible; transition: 0.8s;
+            background-color: var(--black); z-index: 9999; transition: 0.8s;
         }
         #welcome-screen h1 { font-size: 2.2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 5px; text-align: center; margin: 0 20px; }
-        
         .btn-enter {
             padding: 15px 35px; font-size: 1rem; color: var(--gold); background: transparent;
             border: 2px solid var(--gold); cursor: pointer; border-radius: 50px; transition: 0.3s;
             text-transform: uppercase; font-weight: bold; margin-top: 30px;
-            -webkit-tap-highlight-color: transparent;
         }
-        .btn-enter:active { background: var(--gold); color: var(--black); }
+        .btn-enter:hover { background: var(--gold); color: var(--black); }
 
         /* --- CONTENT --- */
         #main-content { opacity: 0; display: none; transition: 1s; padding-bottom: 50px; }
@@ -57,9 +55,11 @@
         .skill-bar { background: #333; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-top: 5px; }
         .skill-fill { background: var(--gold); height: 100%; width: 0; transition: 2s ease-out; }
 
-        /* --- PROJECT DETAIL --- */
-        #project-detail { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; color: #bbb; }
-        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 10px 0; font-size: 0.9rem; text-decoration: underline; }
+        /* --- TOGGLE DETAIL --- */
+        .project-item { border-bottom: 1px solid #333; padding: 15px 0; }
+        .project-item:last-child { border: none; }
+        .detail-box { display: none; margin-top: 10px; color: #bbb; font-size: 0.95rem; }
+        .btn-more { background: none; border: none; color: var(--gold); cursor: pointer; font-weight: bold; padding: 5px 0; font-size: 0.85rem; text-decoration: underline; }
 
         footer { text-align: center; padding: 30px; color: #555; font-size: 0.8rem; }
         a { color: var(--gold); text-decoration: none; font-weight: bold; }
@@ -85,39 +85,71 @@
 
         <div class="container">
             <section>
-                <h2>Pendidikan</h2>
-                <p style="margin: 0; font-weight: bold;">SMK Teratai Putih Jakarta</p>
-                <p style="color: #888; margin: 5px 0 0 0;">Jurusan Teknik Komputer dan Jaringan (TKJ)</p>
+                <h2>Tentang Saya</h2>
+                <p style="line-height: 1.6;">Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis. Mahir menggunakan <strong>Ibis Paint X</strong> dan <strong>FlipaClip</strong> untuk menghasilkan animatic berkualitas. Saya mencari peran untuk menerapkan keahlian visual storytelling dan timing cinematic dalam proyek anime yang inovatif.</p>
             </section>
 
             <section>
-                <h2>Keahlian</h2>
+                <h2>Pendidikan</h2>
+                <p style="margin: 0; font-weight: bold;">SMKS Teratai Putih Jakarta</p>
+                <p style="color: var(--gold); margin: 5px 0;">Teknik Komputer Jaringan (2026)</p>
+                <p style="font-size: 0.9rem; color: #bbb;">Mempelajari IT seperti design website, hosting, dan membangun sebuah jaringan.</p>
+            </section>
+
+            <section>
+                <h2>Keahlian Utama</h2>
                 <div class="skill-container">
-                    <span>Storyboard (90%)</span>
+                    <span>Storyboard & Visual Storytelling (90%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="90%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span>Animator (80%)</span>
+                    <span>Animation (Ibis Paint X & Flipaclip) (80%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="80%"></div></div>
                 </div>
                 <div class="skill-container">
-                    <span>Camera Angle (85%)</span>
+                    <span>Camera Angle & Composition (85%)</span>
                     <div class="skill-bar"><div class="skill-fill" data-skill="85%"></div></div>
                 </div>
             </section>
 
             <section>
-                <h2>Project</h2>
-                <ul style="padding-left: 20px; margin-bottom: 10px;">
-                    <li>Film Animasi Pendek: "Hantu"</li>
-                    <li>Digital Storyboarding</li>
-                </ul>
-                <button class="btn-more" id="btn-toggle" onclick="toggleProject()">+ Baca Selengkapnya</button>
+                <h2>Pengalaman</h2>
                 
-                <div id="project-detail">
-                    <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
-                        Project "Hantu" adalah karya animasi pribadi di mana saya berperan penuh dalam menyusun alur cerita (storyboard), desain karakter, hingga proses gerak animasi. Fokus utama project ini adalah mengeksplorasi nuansa horor visual melalui teknik camera angle yang dramatis.
-                    </p>
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold;">PKL Duta Teknologi – Software</p>
+                    <p style="color: #888; font-size: 0.85rem;">Jan 2025 - Jun 2025</p>
+                    <button class="btn-more" onclick="toggleDetail('pkl')">+ Lihat Detail</button>
+                    <div id="pkl" class="detail-box">
+                        <ul style="padding-left: 20px;">
+                            <li>Mendesain sebuah website perusahaan menggunakan WordPress.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold;">Animasi Bacon vs Pyro – Kolaborasi</p>
+                    <p style="color: #888; font-size: 0.85rem;">Sept 2025 - Sekarang</p>
+                    <button class="btn-more" onclick="toggleDetail('collab')">+ Lihat Detail</button>
+                    <div id="collab" class="detail-box">
+                        <ul style="padding-left: 20px;">
+                            <li>Lead Storyboard: Membuat animasi action yang terstruktur.</li>
+                            <li>Mengatur timing agar adegan action terasa dinamis.</li>
+                            <li>Membuat animatic video dari storyboard.</li>
+                            <li>Menentukan angle kamera di scene action.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <p style="margin: 0; font-weight: bold;">Animasi Hantu – Proyek Pribadi</p>
+                    <p style="color: #888; font-size: 0.85rem;">2023 - 2024</p>
+                    <button class="btn-more" onclick="toggleDetail('hantu')">+ Lihat Detail</button>
+                    <div id="hantu" class="detail-box">
+                        <ul style="padding-left: 20px;">
+                            <li>Character Acting: Membuat karakter terasa lebih hidup dan realis.</li>
+                            <li>Mengatur composition untuk visual yang lebih menarik.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -132,40 +164,31 @@
     </div>
 
     <script>
-        // Fungsi Masuk Web
         function masukWeb() {
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
-            
-            // Sembunyikan Splash Screen
             welcome.style.opacity = '0';
             setTimeout(function() {
-                welcome.style.visibility = 'hidden';
                 welcome.style.display = 'none';
-                
-                // Munculkan Konten
                 main.style.display = 'block';
                 setTimeout(function() {
                     main.style.opacity = '1';
-                    // Animasi Bar Skill
-                    var bars = document.querySelectorAll('.skill-fill');
-                    bars.forEach(function(bar) {
+                    document.querySelectorAll('.skill-fill').forEach(function(bar) {
                         bar.style.width = bar.getAttribute('data-skill');
                     });
                 }, 50);
             }, 800);
         }
 
-        // Fungsi Toggle Project
-        function toggleProject() {
-            var detail = document.getElementById('project-detail');
-            var btn = document.getElementById('btn-toggle');
-            if (detail.style.display === "none" || detail.style.display === "") {
+        function toggleDetail(id) {
+            var detail = document.getElementById(id);
+            var btn = detail.previousElementSibling;
+            if (detail.style.display === "block") {
+                detail.style.display = "none";
+                btn.innerText = "+ Lihat Detail";
+            } else {
                 detail.style.display = "block";
                 btn.innerText = "- Tutup Detail";
-            } else {
-                detail.style.display = "none";
-                btn.innerText = "+ Baca Selengkapnya";
             }
         }
     </script>
