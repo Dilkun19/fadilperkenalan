@@ -137,7 +137,9 @@
         <div class="container">
             <section class="reveal">
                 <h2>Tentang Saya</h2>
-                <p style="font-size: 0.95rem;">Storyboard artist dan animator yang terampil menerjemahkan naskah menjadi visual naratif dinamis. Ahli <strong>Ibis Paint X</strong> & <strong>FlipaClip</strong>.</p>
+                <p style="font-size: 0.95rem; line-height: 1.6;">
+                    Storyboard artist dan animator yang terampil dalam menerjemahkan naskah menjadi visual naratif yang dinamis dan terstruktur. Mahir menggunakan <strong>Ibis paint x</strong> dan <strong>Flipaclip</strong> untuk menghasilkan animatic berkualitas dan pergerakan yang mulus. Mencari peran untuk menerapkan keahlian visual storytelling, timing cinematic, dan character layout dalam proyek anime-anime yang inovatif.
+                </p>
             </section>
 
             <section class="reveal">
@@ -171,13 +173,13 @@
                     <button class="btn-more" onclick="toggleDetail('pkl')">+ Detail</button>
                     <div id="pkl" class="detail-box">
                         <ul>
-                            <li>Mendesain sebuah website perusahaan menggunakan WordPress.</li>
+                            <li>Mendesain sebuah website perusahaan menggunakan wordpress.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Bacon vs Pyro – Proyek Kolaborasi</p>
+                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Voltacol vs Pyrowo – Proyek kolaborasi</p>
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">Sept 2025 - Sekarang</p>
                     <button class="btn-more" onclick="toggleDetail('collab')">+ Detail</button>
                     <div id="collab" class="detail-box">
@@ -191,7 +193,7 @@
                 </div>
 
                 <div class="project-item">
-                    <p style="margin: 0; font-weight: bold; font-size: 0.95rem;">Animasi Hantu – Proyek Pribadi</p>
+                    <p style="margin: 0; font-weight: bold; font-size: 1.05rem;">Animasi hantu - Proyek pribadi</p>
                     <p style="margin: 2px 0; font-size: 0.8rem; color: var(--gold);">2023 - 2024</p>
                     <button class="btn-more" onclick="toggleDetail('hantu')">+ Detail</button>
                     <div id="hantu" class="detail-box">
@@ -237,9 +239,7 @@
             var welcome = document.getElementById('welcome-screen');
             var main = document.getElementById('main-content');
             var mPanel = document.getElementById('musicPanel');
-            
-            audio.play().catch(e => console.log("Audio block"));
-            
+            audio.play().catch(e => console.log("Audio play failed"));
             welcome.style.opacity = '0';
             setTimeout(() => {
                 welcome.style.display = 'none';
